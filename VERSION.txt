@@ -1,0 +1,21 @@
+Josh
+Version 0.1 Beta
+=======================================================================
+Copyright (C) 2009  Yifan Lu
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+=======================================================================
+
+Changelog:
+
+0.1
+Initial public release. The following functions are avaiable
+-Changing color of output text
+-Changing highlight of output text
+-Clearing the console (and changing the background color)
+-Changing the title
+-Creating new buffers
+-Highlighting any portion of the output
+-Moving the output cursor anywhere in the shell
