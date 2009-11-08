@@ -1,5 +1,5 @@
 Josh
-Version 0.1 Beta
+Version 0.2 Beta
 =======================================================================
 Copyright (C) 2009  Yifan Lu
 This program is free software: you can redistribute it and/or modify
@@ -9,6 +9,11 @@ the Free Software Foundation, either version 3 of the License, or
 =======================================================================
 
 Changelog:
+
+0.2
+-Finished most of the Get methods
+-Reorganized the classes
+-Added psudo-structures for handling the Gets and eventually the Sets
 
 0.1
 Initial public release. The following functions are avaiable

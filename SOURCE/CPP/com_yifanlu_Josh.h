@@ -7,14 +7,12 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-/*
- * Class:     com_yifanlu_Josh
- * Method:    ADDCONSOLEALIAS
- * Signature: (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
- */
-JNIEXPORT void JNICALL Java_com_yifanlu_Josh_ADDCONSOLEALIAS
-  (JNIEnv *, jclass, jstring, jstring, jstring);
-
+#undef com_yifanlu_Josh_STD_INPUT_HANDLE
+#define com_yifanlu_Josh_STD_INPUT_HANDLE -10L
+#undef com_yifanlu_Josh_STD_OUTPUT_HANDLE
+#define com_yifanlu_Josh_STD_OUTPUT_HANDLE -11L
+#undef com_yifanlu_Josh_STD_ERROR_HANDLE
+#define com_yifanlu_Josh_STD_ERROR_HANDLE -12L
 /*
  * Class:     com_yifanlu_Josh
  * Method:    CREATECONSOLESCREENBUFFER
@@ -50,10 +48,10 @@ JNIEXPORT jintArray JNICALL Java_com_yifanlu_Josh_GETCONSOLECURSORINFO
 /*
  * Class:     com_yifanlu_Josh
  * Method:    GETCONSOLEDISPLAYMODE
- * Signature: (J)I
+ * Signature: ()I
  */
 JNIEXPORT jint JNICALL Java_com_yifanlu_Josh_GETCONSOLEDISPLAYMODE
-  (JNIEnv *, jclass, jlong);
+  (JNIEnv *, jclass);
 
 /*
  * Class:     com_yifanlu_Josh
@@ -81,11 +79,83 @@ JNIEXPORT jint JNICALL Java_com_yifanlu_Josh_GETCONSOLEMODE
 
 /*
  * Class:     com_yifanlu_Josh
- * Method:    GETCONSOLESCREENBUFFERSIZE
+ * Method:    GETCONSOLEORGINIALTITLE
+ * Signature: ()Ljava/lang/String;
+ */
+JNIEXPORT jstring JNICALL Java_com_yifanlu_Josh_GETCONSOLEORGINIALTITLE
+  (JNIEnv *, jclass);
+
+/*
+ * Class:     com_yifanlu_Josh
+ * Method:    GETCONSOLEOUTPUTCP
+ * Signature: ()J
+ */
+JNIEXPORT jlong JNICALL Java_com_yifanlu_Josh_GETCONSOLEOUTPUTCP
+  (JNIEnv *, jclass);
+
+/*
+ * Class:     com_yifanlu_Josh
+ * Method:    GETCONSOLESCREENBUFFERINFO
  * Signature: (J)[I
  */
-JNIEXPORT jintArray JNICALL Java_com_yifanlu_Josh_GETCONSOLESCREENBUFFERSIZE
+JNIEXPORT jintArray JNICALL Java_com_yifanlu_Josh_GETCONSOLESCREENBUFFERINFO
   (JNIEnv *, jclass, jlong);
+
+/*
+ * Class:     com_yifanlu_Josh
+ * Method:    GETCONSOLESELECTIONINFO
+ * Signature: ()[I
+ */
+JNIEXPORT jintArray JNICALL Java_com_yifanlu_Josh_GETCONSOLESELECTIONINFO
+  (JNIEnv *, jclass);
+
+/*
+ * Class:     com_yifanlu_Josh
+ * Method:    GETCONSOLETITLE
+ * Signature: ()Ljava/lang/String;
+ */
+JNIEXPORT jstring JNICALL Java_com_yifanlu_Josh_GETCONSOLETITLE
+  (JNIEnv *, jclass);
+
+/*
+ * Class:     com_yifanlu_Josh
+ * Method:    GETCONSOLEWINDOW
+ * Signature: ()J
+ */
+JNIEXPORT jlong JNICALL Java_com_yifanlu_Josh_GETCONSOLEWINDOW
+  (JNIEnv *, jclass);
+
+/*
+ * Class:     com_yifanlu_Josh
+ * Method:    GETLARGESTCONSOLEWINDOWSIZE
+ * Signature: (J)[I
+ */
+JNIEXPORT jintArray JNICALL Java_com_yifanlu_Josh_GETLARGESTCONSOLEWINDOWSIZE
+  (JNIEnv *, jclass, jlong);
+
+/*
+ * Class:     com_yifanlu_Josh
+ * Method:    GETNUMBEROFCONSOLEINPUTEVENTS
+ * Signature: (J)I
+ */
+JNIEXPORT jint JNICALL Java_com_yifanlu_Josh_GETNUMBEROFCONSOLEINPUTEVENTS
+  (JNIEnv *, jclass, jlong);
+
+/*
+ * Class:     com_yifanlu_Josh
+ * Method:    GETNUMBEROFCONSOLEMOUSEBUTTONS
+ * Signature: ()I
+ */
+JNIEXPORT jint JNICALL Java_com_yifanlu_Josh_GETNUMBEROFCONSOLEMOUSEBUTTONS
+  (JNIEnv *, jclass);
+
+/*
+ * Class:     com_yifanlu_Josh
+ * Method:    GETSTDHANDLE
+ * Signature: (I)J
+ */
+JNIEXPORT jlong JNICALL Java_com_yifanlu_Josh_GETSTDHANDLE
+  (JNIEnv *, jclass, jint);
 
 /*
  * Class:     com_yifanlu_Josh
@@ -118,14 +188,6 @@ JNIEXPORT void JNICALL Java_com_yifanlu_Josh_CLEARSCREEN
  */
 JNIEXPORT void JNICALL Java_com_yifanlu_Josh_SETCONSOLECURSORPOSITION
   (JNIEnv *, jclass, jlong, jint, jint);
-
-/*
- * Class:     com_yifanlu_Josh
- * Method:    GETSTDHANDLE
- * Signature: ()J
- */
-JNIEXPORT jlong JNICALL Java_com_yifanlu_Josh_GETSTDHANDLE
-  (JNIEnv *, jclass);
 
 /*
  * Class:     com_yifanlu_Josh

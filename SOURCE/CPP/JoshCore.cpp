@@ -13,18 +13,6 @@ HANDLE pointerToHandle
 	return (HANDLE)pointer;
 }
 
-JNIEXPORT void JNICALL Java_com_yifanlu_Josh_ADDCONSOLEALIAS
-  (JNIEnv *env, jclass jcls, jstring source, jstring target, jstring exename)
-{
-	/*
-	const wchar_t * cSource = (wchar_t*) env->GetStringChars(source, NULL);
-	const wchar_t * cTarget = (wchar_t*) env->GetStringChars(target, NULL);
-	const wchar_t * cExename = (wchar_t*) env->GetStringChars(exename, NULL);
-
-	AddConsoleAlias(cSource, cTarget, cExename);
-	*/
-}
-
 JNIEXPORT jlong JNICALL Java_com_yifanlu_Josh_CREATECONSOLESCREENBUFFER
   (JNIEnv *env, jclass jcls, jboolean read, jboolean write, jint shared)
 {
@@ -77,10 +65,9 @@ JNIEXPORT jintArray JNICALL Java_com_yifanlu_Josh_GETCONSOLECURSORINFO
 }
 
 JNIEXPORT jint JNICALL Java_com_yifanlu_Josh_GETCONSOLEDISPLAYMODE
-  (JNIEnv *env, jclass jcls, jlong pointer)
+  (JNIEnv *env, jclass jcls)
 {
-    HANDLE hConsole = pointerToHandle(pointer);
-	DWORD mode = 0;
+	DWORD mode;
 	GetConsoleDisplayMode(&mode);
 
 	return (int)mode;
@@ -109,8 +96,8 @@ JNIEXPORT jintArray JNICALL Java_com_yifanlu_Josh_GETCONSOLEHISTORYINFO
 	GetConsoleHistoryInfo(&history);
 
 	jintArray info = env->NewIntArray(4);
-	int cInfo[4] = {history.cbSize, history.HistoryBufferSize, history.NumberOfHistoryBuffers, history.dwFlags};
-	env->SetIntArrayRegion(info, 0, 4, (jint *)cInfo);
+	int cInfo[3] = {history.HistoryBufferSize, history.NumberOfHistoryBuffers, history.dwFlags};
+	env->SetIntArrayRegion(info, 0, 3, (jint *)cInfo);
 
 	return info;
 }
@@ -119,26 +106,121 @@ JNIEXPORT jint JNICALL Java_com_yifanlu_Josh_GETCONSOLEMODE
   (JNIEnv *env, jclass jcls, jlong pointer)
 {
     HANDLE hConsole = pointerToHandle(pointer);
-	DWORD info = 0;
+	DWORD info;
 	GetConsoleMode(hConsole, &info);
 
-	return (int)zinfo;
+	return (int)info;
 }
 
-JNIEXPORT jintArray JNICALL Java_com_yifanlu_Josh_GETCONSOLESCREENBUFFERSIZE
+JNIEXPORT jstring JNICALL Java_com_yifanlu_Josh_GETCONSOLEORGINIALTITLE
+  (JNIEnv *env, jclass jcls)
+{
+	TCHAR title[1024];
+	GetConsoleOriginalTitle(title, 1024);
+
+	int len = strlen(title);
+	jchar* unicodeChars = new jchar[len];
+	for (int i=0; i<len; i++)
+		unicodeChars[i] = title[i];
+	jstring jTitle = env->NewString(unicodeChars, len);
+	delete[] unicodeChars;
+
+	return jTitle;
+}
+
+JNIEXPORT jintArray JNICALL Java_com_yifanlu_Josh_GETCONSOLESCREENBUFFERINFO
   (JNIEnv *env, jclass jcls, jlong pointer)
 {
     HANDLE hConsole = pointerToHandle(pointer);
 	CONSOLE_SCREEN_BUFFER_INFO info;
 	GetConsoleScreenBufferInfo(hConsole, &info);
 
-	jintArray size = env->NewIntArray(2);
+	jintArray jInfo = env->NewIntArray(11);
 
-	int cSize[2] = {info.dwSize.X, info.dwSize.Y};
+	int cInfo[11] = {info.dwSize.X, info.dwSize.Y, info.dwCursorPosition.X, info.dwCursorPosition.Y, info.wAttributes, info.srWindow.Left, info.srWindow.Top, info.srWindow.Right, info.srWindow.Bottom, info.dwMaximumWindowSize.X, info.dwMaximumWindowSize.Y};
 
-	env->SetIntArrayRegion(size, 0, 2, (jint *)cSize);
+	env->SetIntArrayRegion(jInfo, 0, 11, (jint *)cInfo);
 
-	return size;
+	return jInfo;
+}
+
+JNIEXPORT jintArray JNICALL Java_com_yifanlu_Josh_GETCONSOLESELECTIONINFO
+  (JNIEnv *env, jclass jcls)
+{
+	CONSOLE_SELECTION_INFO info;
+	GetConsoleSelectionInfo(&info);
+
+	jintArray jInfo = env->NewIntArray(7);
+
+	int cInfo[7] = {info.dwFlags, info.dwSelectionAnchor.X, info.dwSelectionAnchor.Y, info.srSelection.Left, info.srSelection.Top, info.srSelection.Right, info.srSelection.Bottom};
+
+	env->SetIntArrayRegion(jInfo, 0, 7, (jint *)cInfo);
+
+	return jInfo;
+}
+
+JNIEXPORT jstring JNICALL Java_com_yifanlu_Josh_GETCONSOLETITLE
+  (JNIEnv *env, jclass jcls)
+{
+	TCHAR title[1024];
+	GetConsoleTitle(title, 1024);
+
+	int len = strlen(title);
+	jchar* unicodeChars = new jchar[len];
+	for (int i=0; i<len; i++)
+		unicodeChars[i] = title[i];
+	jstring jTitle = env->NewString(unicodeChars, len);
+	delete[] unicodeChars;
+
+	return jTitle;
+}
+
+JNIEXPORT jlong JNICALL Java_com_yifanlu_Josh_GETCONSOLEWINDOW
+  (JNIEnv *env, jclass jcls)
+{
+    HWND handle = GetConsoleWindow();
+	UINT_PTR pointer = (UINT_PTR)handle;
+	
+	return pointer;
+}
+
+JNIEXPORT jintArray JNICALL Java_com_yifanlu_Josh_GETLARGESTCONSOLEWINDOWSIZE
+  (JNIEnv *env, jclass jcls, jlong pointer)
+{
+	HANDLE hConsole = pointerToHandle(pointer);
+	COORD size = GetLargestConsoleWindowSize(hConsole);
+
+	jintArray info = env->NewIntArray(2);
+	int cInfo[2] = {size.X, size.Y};
+	env->SetIntArrayRegion(info, 0, 2, (jint *)cInfo);
+
+	return info;
+}
+
+JNIEXPORT jint JNICALL Java_com_yifanlu_Josh_GETNUMBEROFCONSOLEINPUTEVENTS
+  (JNIEnv *env, jclass jcls, jlong pointer)
+{
+	HANDLE hIn = pointerToHandle(pointer);
+	DWORD numEvents;
+	GetNumberOfConsoleInputEvents(hIn, &numEvents);
+	return numEvents;
+}
+
+JNIEXPORT jint JNICALL Java_com_yifanlu_Josh_GETNUMBEROFCONSOLEMOUSEBUTTONS
+  (JNIEnv *env, jclass jcls)
+{
+	DWORD numEvents;
+	GetNumberOfConsoleMouseButtons(&numEvents);
+	return numEvents;
+}
+
+JNIEXPORT jlong JNICALL Java_com_yifanlu_Josh_GETSTDHANDLE
+  (JNIEnv *env, jclass jcls, jint handle)
+{
+	HANDLE hConsole = GetStdHandle ( (DWORD)handle );
+	UINT_PTR pointer = (UINT_PTR)hConsole;
+
+	return pointer;
 }
 
 JNIEXPORT void JNICALL Java_com_yifanlu_Josh_SETTEXTATTRIBUTE
@@ -187,15 +269,6 @@ JNIEXPORT void JNICALL Java_com_yifanlu_Josh_SETCONSOLECURSORPOSITION
     HANDLE hConsole = pointerToHandle(pointer);
 	COORD pos = {x, y};
 	SetConsoleCursorPosition ( hConsole, pos );
-}
-
-JNIEXPORT jlong JNICALL Java_com_yifanlu_Josh_GETSTDHANDLE
-  (JNIEnv *env, jclass jcls)
-{
-	HANDLE hConsole = GetStdHandle ( STD_OUTPUT_HANDLE );
-	UINT_PTR pointer = (UINT_PTR)hConsole;
-
-	return pointer;
 }
 
 JNIEXPORT void JNICALL Java_com_yifanlu_Josh_WRITECONSOLE
