@@ -10,6 +10,7 @@ public class ConsoleBuffer extends Josh {
 	public ConsoleHandle handle;
 	public JoshOutput out;
 	public JoshOutBuffer outBuffer;
+	public boolean in = false; // No input in hidden buffers!
 	public boolean inBuffer = false; // No input in hidden buffers!
 	
 	public ConsoleBuffer(){ newConsoleBuffer(true,true); }

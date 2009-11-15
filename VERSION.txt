@@ -1,5 +1,5 @@
 Josh
-Version 0.2 Beta
+Version 0.3 Beta
 =======================================================================
 Copyright (C) 2009  Yifan Lu
 This program is free software: you can redistribute it and/or modify
@@ -9,6 +9,15 @@ the Free Software Foundation, either version 3 of the License, or
 =======================================================================
 
 Changelog:
+
+0.3
+-All planned functions done
+-Events
+-Changing fonts/buffer
+-Switching active buffers
+-Moving buffer data within a buffer
+-(Untested) Copying & pasting buffer data
+-and more...
 
 0.2
 -Finished most of the Get methods

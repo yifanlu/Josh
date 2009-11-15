@@ -87,14 +87,6 @@ JNIEXPORT jstring JNICALL Java_com_yifanlu_Josh_GETCONSOLEORGINIALTITLE
 
 /*
  * Class:     com_yifanlu_Josh
- * Method:    GETCONSOLEOUTPUTCP
- * Signature: ()J
- */
-JNIEXPORT jlong JNICALL Java_com_yifanlu_Josh_GETCONSOLEOUTPUTCP
-  (JNIEnv *, jclass);
-
-/*
- * Class:     com_yifanlu_Josh
  * Method:    GETCONSOLESCREENBUFFERINFO
  * Signature: (J)[I
  */
@@ -124,6 +116,14 @@ JNIEXPORT jstring JNICALL Java_com_yifanlu_Josh_GETCONSOLETITLE
  */
 JNIEXPORT jlong JNICALL Java_com_yifanlu_Josh_GETCONSOLEWINDOW
   (JNIEnv *, jclass);
+
+/*
+ * Class:     com_yifanlu_Josh
+ * Method:    GETCURRENTCONSOLEFONT
+ * Signature: (JZ)[I
+ */
+JNIEXPORT jintArray JNICALL Java_com_yifanlu_Josh_GETCURRENTCONSOLEFONT
+  (JNIEnv *, jclass, jlong, jboolean);
 
 /*
  * Class:     com_yifanlu_Josh
@@ -159,27 +159,75 @@ JNIEXPORT jlong JNICALL Java_com_yifanlu_Josh_GETSTDHANDLE
 
 /*
  * Class:     com_yifanlu_Josh
- * Method:    SETCONSOLETITLE
- * Signature: (Ljava/lang/String;)V
+ * Method:    PEEKCONSOLEINPUT
+ * Signature: (JI)[I
  */
-JNIEXPORT void JNICALL Java_com_yifanlu_Josh_SETCONSOLETITLE
-  (JNIEnv *, jclass, jstring);
-
-/*
- * Class:     com_yifanlu_Josh
- * Method:    SETTEXTATTRIBUTE
- * Signature: (JII)V
- */
-JNIEXPORT void JNICALL Java_com_yifanlu_Josh_SETTEXTATTRIBUTE
-  (JNIEnv *, jclass, jlong, jint, jint);
-
-/*
- * Class:     com_yifanlu_Josh
- * Method:    CLEARSCREEN
- * Signature: (JI)V
- */
-JNIEXPORT void JNICALL Java_com_yifanlu_Josh_CLEARSCREEN
+JNIEXPORT jintArray JNICALL Java_com_yifanlu_Josh_PEEKCONSOLEINPUT
   (JNIEnv *, jclass, jlong, jint);
+
+/*
+ * Class:     com_yifanlu_Josh
+ * Method:    READCONSOLEINPUT
+ * Signature: (JI)[I
+ */
+JNIEXPORT jintArray JNICALL Java_com_yifanlu_Josh_READCONSOLEINPUT
+  (JNIEnv *, jclass, jlong, jint);
+
+/*
+ * Class:     com_yifanlu_Josh
+ * Method:    READCONSOLE
+ * Signature: (J)Ljava/lang/String;
+ */
+JNIEXPORT jstring JNICALL Java_com_yifanlu_Josh_READCONSOLE
+  (JNIEnv *, jclass, jlong);
+
+/*
+ * Class:     com_yifanlu_Josh
+ * Method:    READCONSOLEOUTPUT
+ * Signature: (JIIII)[[I
+ */
+JNIEXPORT jobjectArray JNICALL Java_com_yifanlu_Josh_READCONSOLEOUTPUT
+  (JNIEnv *, jclass, jlong, jint, jint, jint, jint);
+
+/*
+ * Class:     com_yifanlu_Josh
+ * Method:    READCONSOLEOUTPUTATTRIBUTE
+ * Signature: (JIII)[I
+ */
+JNIEXPORT jintArray JNICALL Java_com_yifanlu_Josh_READCONSOLEOUTPUTATTRIBUTE
+  (JNIEnv *, jclass, jlong, jint, jint, jint);
+
+/*
+ * Class:     com_yifanlu_Josh
+ * Method:    READCONSOLEOUTPUTCHARACTER
+ * Signature: (JIII)[I
+ */
+JNIEXPORT jintArray JNICALL Java_com_yifanlu_Josh_READCONSOLEOUTPUTCHARACTER
+  (JNIEnv *, jclass, jlong, jint, jint, jint);
+
+/*
+ * Class:     com_yifanlu_Josh
+ * Method:    SCROLLCONSOLESCREENBUFFER
+ * Signature: (JIIIIIIIIIICI)V
+ */
+JNIEXPORT void JNICALL Java_com_yifanlu_Josh_SCROLLCONSOLESCREENBUFFER
+  (JNIEnv *, jclass, jlong, jint, jint, jint, jint, jint, jint, jint, jint, jint, jint, jchar, jint);
+
+/*
+ * Class:     com_yifanlu_Josh
+ * Method:    SETCONSOLEACTIVESCREENBUFFER
+ * Signature: (J)V
+ */
+JNIEXPORT void JNICALL Java_com_yifanlu_Josh_SETCONSOLEACTIVESCREENBUFFER
+  (JNIEnv *, jclass, jlong);
+
+/*
+ * Class:     com_yifanlu_Josh
+ * Method:    SETCONSOLECURSORINFO
+ * Signature: (JIZ)V
+ */
+JNIEXPORT void JNICALL Java_com_yifanlu_Josh_SETCONSOLECURSORINFO
+  (JNIEnv *, jclass, jlong, jint, jboolean);
 
 /*
  * Class:     com_yifanlu_Josh
@@ -191,11 +239,147 @@ JNIEXPORT void JNICALL Java_com_yifanlu_Josh_SETCONSOLECURSORPOSITION
 
 /*
  * Class:     com_yifanlu_Josh
+ * Method:    SETCONSOLEDISPLAYMODE
+ * Signature: (JI)V
+ */
+JNIEXPORT void JNICALL Java_com_yifanlu_Josh_SETCONSOLEDISPLAYMODE
+  (JNIEnv *, jclass, jlong, jint);
+
+/*
+ * Class:     com_yifanlu_Josh
+ * Method:    SETCONSOLEHISTORYINFO
+ * Signature: (III)V
+ */
+JNIEXPORT void JNICALL Java_com_yifanlu_Josh_SETCONSOLEHISTORYINFO
+  (JNIEnv *, jclass, jint, jint, jint);
+
+/*
+ * Class:     com_yifanlu_Josh
+ * Method:    SETCONSOLEMODE
+ * Signature: (JI)V
+ */
+JNIEXPORT void JNICALL Java_com_yifanlu_Josh_SETCONSOLEMODE
+  (JNIEnv *, jclass, jlong, jint);
+
+/*
+ * Class:     com_yifanlu_Josh
+ * Method:    SETCONSOLESCREENBUFFERINFOEX
+ * Signature: (JIIIIIIIIIII)V
+ */
+JNIEXPORT void JNICALL Java_com_yifanlu_Josh_SETCONSOLESCREENBUFFERINFOEX
+  (JNIEnv *, jclass, jlong, jint, jint, jint, jint, jint, jint, jint, jint, jint, jint, jint);
+
+/*
+ * Class:     com_yifanlu_Josh
+ * Method:    SETCONSOLESCREENBUFFERSIZE
+ * Signature: (JII)V
+ */
+JNIEXPORT void JNICALL Java_com_yifanlu_Josh_SETCONSOLESCREENBUFFERSIZE
+  (JNIEnv *, jclass, jlong, jint, jint);
+
+/*
+ * Class:     com_yifanlu_Josh
+ * Method:    SETTEXTATTRIBUTE
+ * Signature: (JII)V
+ */
+JNIEXPORT void JNICALL Java_com_yifanlu_Josh_SETTEXTATTRIBUTE
+  (JNIEnv *, jclass, jlong, jint, jint);
+
+/*
+ * Class:     com_yifanlu_Josh
+ * Method:    SETCONSOLETITLE
+ * Signature: (Ljava/lang/String;)V
+ */
+JNIEXPORT void JNICALL Java_com_yifanlu_Josh_SETCONSOLETITLE
+  (JNIEnv *, jclass, jstring);
+
+/*
+ * Class:     com_yifanlu_Josh
+ * Method:    SETCONSOLEWINDOWINFO
+ * Signature: (JZIIII)V
+ */
+JNIEXPORT void JNICALL Java_com_yifanlu_Josh_SETCONSOLEWINDOWINFO
+  (JNIEnv *, jclass, jlong, jboolean, jint, jint, jint, jint);
+
+/*
+ * Class:     com_yifanlu_Josh
+ * Method:    SETCURRENTCONSOLEFONTEX
+ * Signature: (JZIII)V
+ */
+JNIEXPORT void JNICALL Java_com_yifanlu_Josh_SETCURRENTCONSOLEFONTEX
+  (JNIEnv *, jclass, jlong, jboolean, jint, jint, jint);
+
+/*
+ * Class:     com_yifanlu_Josh
+ * Method:    SETSTDHANDLE
+ * Signature: (IJ)V
+ */
+JNIEXPORT void JNICALL Java_com_yifanlu_Josh_SETSTDHANDLE
+  (JNIEnv *, jclass, jint, jlong);
+
+/*
+ * Class:     com_yifanlu_Josh
  * Method:    WRITECONSOLE
  * Signature: (JLjava/lang/String;)V
  */
 JNIEXPORT void JNICALL Java_com_yifanlu_Josh_WRITECONSOLE
   (JNIEnv *, jclass, jlong, jstring);
+
+/*
+ * Class:     com_yifanlu_Josh
+ * Method:    WRITECONSOLEINPUT
+ * Signature: (JI[II)V
+ */
+JNIEXPORT void JNICALL Java_com_yifanlu_Josh_WRITECONSOLEINPUT
+  (JNIEnv *, jclass, jlong, jint, jintArray, jint);
+
+/*
+ * Class:     com_yifanlu_Josh
+ * Method:    WRITECONSOLEOUTPUT
+ * Signature: (J[[IIIII)V
+ */
+JNIEXPORT void JNICALL Java_com_yifanlu_Josh_WRITECONSOLEOUTPUT
+  (JNIEnv *, jclass, jlong, jobjectArray, jint, jint, jint, jint);
+
+/*
+ * Class:     com_yifanlu_Josh
+ * Method:    WRITECONSOLEOUTPUTATTRIBUTE
+ * Signature: (J[IIII)V
+ */
+JNIEXPORT void JNICALL Java_com_yifanlu_Josh_WRITECONSOLEOUTPUTATTRIBUTE
+  (JNIEnv *, jclass, jlong, jintArray, jint, jint, jint);
+
+/*
+ * Class:     com_yifanlu_Josh
+ * Method:    WRITECONSOLEOUTPUTCHARACTER
+ * Signature: (J[IIII)V
+ */
+JNIEXPORT void JNICALL Java_com_yifanlu_Josh_WRITECONSOLEOUTPUTCHARACTER
+  (JNIEnv *, jclass, jlong, jintArray, jint, jint, jint);
+
+/*
+ * Class:     com_yifanlu_Josh
+ * Method:    BEEP
+ * Signature: (II)V
+ */
+JNIEXPORT void JNICALL Java_com_yifanlu_Josh_BEEP
+  (JNIEnv *, jclass, jint, jint);
+
+/*
+ * Class:     com_yifanlu_Josh
+ * Method:    CLEARSCREEN
+ * Signature: (JI)V
+ */
+JNIEXPORT void JNICALL Java_com_yifanlu_Josh_CLEARSCREEN
+  (JNIEnv *, jclass, jlong, jint);
+
+/*
+ * Class:     com_yifanlu_Josh
+ * Method:    SETCONSOLEFONT
+ * Signature: (JI)V
+ */
+JNIEXPORT void JNICALL Java_com_yifanlu_Josh_SETCONSOLEFONT
+  (JNIEnv *, jclass, jlong, jint);
 
 #ifdef __cplusplus
 }
