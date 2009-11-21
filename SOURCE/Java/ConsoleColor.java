@@ -12,7 +12,7 @@ public class ConsoleColor {
 	final static int BACKGROUND_BLUE = 0x0010, BACKGROUND_GREEN = 0x0020, BACKGROUND_RED = 0x0040, BACKGROUND_INTENSITY = 0x0080;
 	final static int COMMON_LVB_LEADING_BYTE = 0x0100, COMMON_LVB_TRAILING_BYTE = 0x0200, COMMON_LVB_GRID_HORIZONTAL = 0x0400, COMMON_LVB_GRID_LVERTICAL = 0x0800, COMMON_LVB_GRID_RVERTICAL = 0x1000, COMMON_LVB_REVERSE_VIDEO = 0x4000, COMMON_LVB_UNDERSCORE = 0x8000;
 	
-	static boolean red = false, blue = false, green = false, bright = false, background = false;
+	public boolean red = false, blue = false, green = false, bright = false, background = false;
 	public int color = 0x0000;
 	public ConsoleColor(){ color = 0x0000; }
 	public ConsoleColor(int attribute){ color = attribute; }

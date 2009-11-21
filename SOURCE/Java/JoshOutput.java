@@ -26,7 +26,8 @@ public class JoshOutput {
 	public void highlight(ConsoleCoord coord, int length, ConsoleColor foreground, ConsoleColor background){ highlight(coord.X, coord.Y, length, foreground, background); }
 	public void highlight(int x, int y, int length, ConsoleColor foreground, ConsoleColor background)
 	{
-		background = new ConsoleColor(background.red, background.blue, background.green, background.bright, true);
+		if(!background.background)
+			background = new ConsoleColor(background.red, background.blue, background.green, background.bright, true);
 		int attribute = foreground.color | background.color;
 		Josh.FILLCONSOLEOUTPUTATTRIBUTE(handle.HANDLE, attribute, length, x, y);
 	}
@@ -34,7 +35,9 @@ public class JoshOutput {
 	public void setOutputColor(ConsoleColor foreground){ setOutputColor(foreground,ConsoleColor.BLACK()); }
 	public void setOutputColor(ConsoleColor foreground, ConsoleColor background)
 	{
-		Josh.SETTEXTATTRIBUTE(handle.HANDLE, foreground.color, new ConsoleColor(background.red, background.blue, background.green, background.bright, true).color);
+		if(!background.background)
+			background = new ConsoleColor(background.red, background.blue, background.green, background.bright, true);
+		Josh.SETTEXTATTRIBUTE(handle.HANDLE, foreground.color, background.color);
 	}
 	public void println(String output){ print(output + "\n"); }
 	public void print(String output)

@@ -35,6 +35,11 @@ Contains some examples for you to see. NOTE: They won't work unless you move the
 .dll from -/LIB to the Examples folder and install Josh either with the jar or
 via copying the package folder from -/CLASS
 
+How to Compile:
+If you prefer to compile everything yourself, there's some steps you need to take:
+For the CPP DLL file: You must specify your jre/include & jre/include/win32 from your JRE installation as the includes (Google if you don't know how), and make sure to include the Windows SDK headers & libraries wherever you installed (Visual C++ should include them automatically if you have Windows SDK installed).
+For the Java files: Compile like any other Java file javac -d com/yifanlu/ *.java
+
 How to Use:
 
 A well written documention will be written in time for the release, but for now:

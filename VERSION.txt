@@ -1,5 +1,5 @@
 Josh
-Version 0.3 Beta
+Version 0.4 Beta
 =======================================================================
 Copyright (C) 2009  Yifan Lu
 This program is free software: you can redistribute it and/or modify
@@ -9,6 +9,13 @@ the Free Software Foundation, either version 3 of the License, or
 =======================================================================
 
 Changelog:
+
+0.4
+-Fixed support for Windows versions below Vista (down to Windows 2000)
+-Made the core DLL 50% smaller
+-Fixed highlighting
+-Fixed ConsoleColor not being the correct color
+-Added error handling for if the core DLL cannot be found
 
 0.3
 -All planned functions done

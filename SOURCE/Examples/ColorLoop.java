@@ -9,7 +9,7 @@ public class ColorLoop {
     	// This will make pretty rainbow bars loop across your screen
     	// This demostrates the MINIMUM power of Josh.
     	// For maximum effect, make the console full screen via ALT+ENTER
-    	while(true){
+    	while(false)
 	    	Josh.out.clearConsole(ConsoleColor.BLUE());
 	    	Josh.out.clearConsole(ConsoleColor.BLUE(true));
 	    	Josh.out.clearConsole(ConsoleColor.CRYAN());

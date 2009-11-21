@@ -24,7 +24,7 @@ public class MouseCursor {
 	    				else
 	    					clickedLocations.add(current);
 			    		for(ConsoleCoord coord : clickedLocations)
-				    		Josh.out.fillWithChar(coord,1,(char)219);
+				    		Josh.out.fillWithChar(coord,1,(char)((221 * Math.random()) + 179));
 	    			}
 		    		Josh.out.fillWithChar(previous,1,(char)0);
 		    		Josh.out.fillWithChar(current,1,(char)219);

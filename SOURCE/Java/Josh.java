@@ -7,7 +7,12 @@
 package com.yifanlu;
 
 public class Josh {
-	static { System.loadLibrary("JoshCore"); }
+	static 
+	{
+		try { System.loadLibrary("JoshCore"); }
+		catch (UnsatisfiedLinkError ex){ System.out.println ("Josh failed to load the required library.\nCurrently, Josh is only supported on Windows NT.\nMake sure you have JoshCore.dll in the same directory as the application you're trying to run.\n" + ex.toString()); }
+		catch (Exception ex){ System.out.println ("Oops! Josh failed to load.\n" + ex.toString()); }
+	}
 	
 	final static int STD_INPUT_HANDLE = -10;
 	final static int STD_OUTPUT_HANDLE = -11;
@@ -73,10 +78,13 @@ public class Josh {
 	{
 		return GETCONSOLETITLE();
 	}
+	/*
+	 * Disabled as it is unsupported by Windows versions < Vista
 	public static String getConsoleOrginialTitle()
 	{
 		return GETCONSOLEORGINIALTITLE();
 	}
+	*/
 	public static void setConsoleTitle(String title)
 	{
 		SETCONSOLETITLE(title);

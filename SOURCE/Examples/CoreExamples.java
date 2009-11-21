@@ -16,8 +16,8 @@ public class CoreExamples {
         
         // Function getConsoleOrginialTitle()
         // Returns a String with the console's ORGINAL title
-        String orginalTitle = Josh.getConsoleOrginialTitle();
-        System.out.println ("The console's orginal title is: " + orginalTitle);
+        //String orginalTitle = Josh.getConsoleOrginialTitle();
+        //System.out.println ("The console's orginal title is: " + orginalTitle);
         
         // Function isFullScreen()
         // Returns a boolean if the console window is full screen or not
