@@ -1,20 +1,100 @@
+package com.yifanlu.Josh;
+
 /**
- * Josh - Java Output Shell enHanced
- * Psudostructure: Represents a cursor info
- * By Yifan Lu
-*/
-
-package com.yifanlu;
-
+ * Contains information about the console cursor.
+ *
+ * @see <a href="http://msdn.microsoft.com/en-us/library/ms682068(v=VS.85).aspx">Windows' CONSOLE_CURSOR_INFO structure</a>
+ * @see JoshOutBuffer#getConsoleCursorInfo
+ * @see JoshOutBuffer#setConsoleCursorInfo
+ * @author Yifan Lu
+ * @version 1.0, 04/24/10
+ * @since 0.1
+ */
 public class ConsoleCursorInfo {
-	
-	public int size = 25;
-	public boolean visible = true;
+	private int size;
+	private boolean visible;
 
-    public ConsoleCursorInfo(){}
+	/**
+     * Creates a default cursor size of 25 that is visible.
+     */
+    public ConsoleCursorInfo(){
+		this.size = 25;
+		this.visible = true;
+	}
+	
+	/**
+     * Creates a new cursor info object.
+     *
+     * @param size The percentage of the character cell that is filled by the cursor. This value is between 1 and 100. 
+	 *	The cursor appearance varies, ranging from completely filling the cell to showing up as a horizontal line at 
+	 *	the bottom of the cell.
+     * @param visible The visibility of the cursor. If the cursor is visible, this member is true.
+     */
     public ConsoleCursorInfo(int size, boolean visible) {
     	this.size = size;
     	this.visible = visible;
     }
     
+	/**
+     * Gets the size.
+	 * 
+	 * @return The percentage of the character cell that is filled by the cursor. This value is between 1 and 100. 
+	 *	The cursor appearance varies, ranging from completely filling the cell to showing up as a horizontal line at 
+	 *	the bottom of the cell.
+     */
+	public int getSize(){
+		return this.size;
+	}
+	
+	/**
+     * Gets the visibility.
+	 * 
+	 * @return The visibility of the cursor. If the cursor is visible, this member is true.
+     */
+	public boolean getVisible(){
+		return this.visible;
+	}
+	
+	/**
+     * Sets the size.
+	 * 
+     * @param size The percentage of the character cell that is filled by the cursor. This value is between 1 and 100. 
+	 *	The cursor appearance varies, ranging from completely filling the cell to showing up as a horizontal line at 
+	 *	the bottom of the cell.
+     */
+	public void setSize(int size){
+		this.size = size;
+	}
+	
+	/**
+     * Sets the visibility.
+	 * 
+     * @param visible The visibility of the cursor. If the cursor is visible, this member is true.
+     */
+	public void setVisible(boolean visible){
+		this.visible = visible;
+	}
+	
+	/** 
+	 * Compares two Objects, if both are ConsoleCursorInfo and have the same values, they are equal.
+     *
+     * @param anObject Another ConsoleCursorInfo object.
+	 * @return true if all values are equal.
+	 */
+	public boolean equals(Object anObject) {
+		if(anObject instanceof ConsoleCursorInfo){
+			ConsoleCursorInfo otherObject = (ConsoleCursorInfo)anObject;
+			return (this.getSize() == otherObject.getSize()) && (this.getVisible() == otherObject.getVisible());
+		}else
+			return false;
+	}
+	
+	/** 
+	 * A {@link java.lang.String} representation of this object.
+	 * 
+	 * @return The size of the console cursor.
+	 */
+	public String toString(){
+		return Integer.toString(this.size);
+	}
 }

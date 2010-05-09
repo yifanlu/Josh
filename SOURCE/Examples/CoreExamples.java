@@ -1,4 +1,6 @@
-import com.yifanlu.*;
+package com.yifanlu.Josh.Examples;
+
+import com.yifanlu.Josh.*;
 
 // This example demostrates the core functionalities of Josh (without getting into buffers, output, input, etc)
 
@@ -32,6 +34,6 @@ public class CoreExamples {
         System.out.println ("Select something. You have 5 seconds.");
         Thread.currentThread().sleep(5000);
         ConsoleSelectionInfo selection = Josh.getConsoleSelectionInfo();
-        System.out.println ("Selection started at: " + selection.dwSelectionAnchor.X + ", " + selection.dwSelectionAnchor.Y);
+        System.out.println ("Selection started at: " + selection.getSelectionAnchor().getX() + ", " + selection.getSelectionAnchor().getY());
     }
 }

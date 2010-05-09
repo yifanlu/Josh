@@ -1,7 +1,7 @@
 Josh
-Version 0.4 Beta
+Version 1.1
 =======================================================================
-Copyright (C) 2009  Yifan Lu
+Copyright (C) 2010  Yifan Lu
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 3 of the License, or
@@ -9,6 +9,15 @@ the Free Software Foundation, either version 3 of the License, or
 =======================================================================
 
 Changelog:
+
+1.1
+-Fixed event bugs
+-Fixed some minor bugs as a result of the recode
+
+1.0
+-Completely recoded to comply with OOP rules.
+-Added documentation
+-No longer beta!
 
 0.4
 -Fixed support for Windows versions below Vista (down to Windows 2000)
