@@ -36,7 +36,7 @@ the JavaDocs.
 How to Use:
 
 1. Link Josh.jar with your application.
-2. Choose a JoshCore.dll. The default will only work on Windows Vista or 
+2. Choose a JoshCore.dll. The default will only work on Windows XP or 
 higher. For more compatibility, use the Windows 2000 version, for more 
 features, use the Windows Vista version.
 3. Look at the examples and read the JavaDocs if you need any help.

@@ -1,1 +1,1 @@
-The default JoshCore.dll is compiled for Windows Vista and higher only. If you would like to support lower OS versions in exchange for less features, choose one and rename it to JoshCore.dll to use. 
+The default JoshCore.dll is compiled for Windows XP and higher only.

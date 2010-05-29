@@ -17,7 +17,7 @@ import com.yifanlu.Josh.OSNotSupportedException;
  * output/input buffers.
  *
  * @author Yifan Lu
- * @version 1.1, 05/09/10
+ * @version 1.2, 05/16/10
  * @since 0.1
  */
 public class Josh extends JoshBuffer {
@@ -78,7 +78,7 @@ public class Josh extends JoshBuffer {
 	native static int[] PEEKCONSOLEINPUT(long pointer, int length);
 	native static int[] READCONSOLEINPUT(long pointer, int length);
 	native static String READCONSOLE(long pointer);
-	native static int[][] READCONSOLEOUTPUT(long pointer, int sizeX, int sizeY, int coordX, int coordY);
+	native static int[][] READCONSOLEOUTPUT(long pointer, int sizeX, int sizeY, int coordX, int coordY, int left, int top, int right, int bottom);
 	native static int[] READCONSOLEOUTPUTATTRIBUTE(long pointer, int x, int y, int length);
 	native static int[] READCONSOLEOUTPUTCHARACTER(long pointer, int x, int y, int length);
 	native static void SCROLLCONSOLESCREENBUFFER(long pointer, int scrollLeft, int scrollTop, int scrollRight, int scrollBottom, int clipLeft, int clipTop, int clipRight, int clipBottom, int toX, int toY, char fillChar, int fillAttribute);
@@ -97,7 +97,7 @@ public class Josh extends JoshBuffer {
 	native static void SETSTDHANDLE(int handle, long pointer);
 	native static void WRITECONSOLE(long pointer, String output);
 	native static void WRITECONSOLEINPUT(long pointer, int eventType, int[] data, int length);
-	native static void WRITECONSOLEOUTPUT(long pointer, int[][] data, int sizeX, int sizeY, int coordX, int coordY);
+	native static void WRITECONSOLEOUTPUT(long pointer, int[][] data, int sizeX, int sizeY, int coordX, int coordY, int left, int top, int right, int bottom);
 	native static void WRITECONSOLEOUTPUTATTRIBUTE(long pointer, int[] data, int length, int x, int y);
 	native static void WRITECONSOLEOUTPUTCHARACTER(long pointer, int[] data, int length, int x, int y);
 	native static void BEEP(int frequency, int duration);

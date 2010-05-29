@@ -187,7 +187,7 @@ JNIEXPORT jstring JNICALL Java_com_yifanlu_Josh_Josh_READCONSOLE
  * Signature: (JIIII)[[I
  */
 JNIEXPORT jobjectArray JNICALL Java_com_yifanlu_Josh_Josh_READCONSOLEOUTPUT
-  (JNIEnv *, jclass, jlong, jint, jint, jint, jint);
+  (JNIEnv *, jclass, jlong, jint, jint, jint, jint, jint, jint, jint, jint);
 
 /*
  * Class:     com_yifanlu_Josh_Josh
@@ -339,7 +339,7 @@ JNIEXPORT void JNICALL Java_com_yifanlu_Josh_Josh_WRITECONSOLEINPUT
  * Signature: (J[[IIIII)V
  */
 JNIEXPORT void JNICALL Java_com_yifanlu_Josh_Josh_WRITECONSOLEOUTPUT
-  (JNIEnv *, jclass, jlong, jobjectArray, jint, jint, jint, jint);
+  (JNIEnv *, jclass, jlong, jobjectArray, jint, jint, jint, jint, jint, jint, jint, jint);
 
 /*
  * Class:     com_yifanlu_Josh_Josh

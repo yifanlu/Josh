@@ -17,7 +17,7 @@ import com.yifanlu.Josh.OSNotSupportedException;
  * Objects from this class are immutable.
  *
  * @author Yifan Lu
- * @version 1.1, 05/09/10
+ * @version 1.2, 05/16/10
  * @since 0.1
  */
 public class JoshOutBuffer extends JoshBuffer {
@@ -280,10 +280,11 @@ public class JoshOutBuffer extends JoshBuffer {
 	 * @see <a href="http://msdn.microsoft.com/en-us/library/ms684965(v=VS.85).aspx">Windows' ReadConsoleOutput function</a>
 	 * @param size The size to read, in character cells. The X member is the number of columns; the Y member is the number of rows.
 	 * @param coord The coordinates of the upper-left cell to start reading. The X member is the column, and the Y member is the row.
+	 * @param readRegion The structure members specify the upper-left and lower-right coordinates of the console screen buffer rectangle from which the function is to read.
 	 * @return An array that contains the character and it's attributes.
 	 */
-	public ConsoleCharInfo[] readConsoleOutput(ConsoleCoord size, ConsoleCoord coord){
-		int[][] rawData = Josh.READCONSOLEOUTPUT(getHandle().getMemoryLocation(), size.getX(), size.getY(), coord.getX(), coord.getY());
+	public ConsoleCharInfo[] readConsoleOutput(ConsoleCoord size, ConsoleCoord coord, ConsoleSmallRect readRegion){
+		int[][] rawData = Josh.READCONSOLEOUTPUT(getHandle().getMemoryLocation(), size.getX(), size.getY(), coord.getX(), coord.getY(), readRegion.getLeft(), readRegion.getTop(), readRegion.getRight(), readRegion.getBottom());
 		ConsoleCharInfo[] data = new ConsoleCharInfo[rawData.length];
 		int i = 0;
 		for(int[] x : rawData)
@@ -299,18 +300,19 @@ public class JoshOutBuffer extends JoshBuffer {
 	 * The data to be written is taken from a correspondingly sized rectangular block at a specified location in the source buffer.
 	 * 
 	 * @see <a href="http://msdn.microsoft.com/en-us/library/ms687404(v=VS.85).aspx">Windows' WriteConsoleOutput function</a>
-	 * @param buffer An array that contains the character and it's attributes.
-	 * @param size The size to read, in character cells. The X member is the number of columns; the Y member is the number of rows.
-	 * @param coord The coordinates of the upper-left cell to start reading. The X member is the column, and the Y member is the row.
+	 * @param buffer The data to be written to the console screen buffer.
+	 * @param size The size of the buffer, in character cells. The X member is the number of columns; the Y member is the number of rows.
+	 * @param coord The coordinates of the upper-left cell in the buffer. The X member is the column, and the Y member is the row.
+	 * @param writeRegion The upper-left and lower-right coordinates of the console screen buffer rectangle to write to.
 	 */
-	public void writeConsoleOutput(ConsoleCharInfo[] buffer, ConsoleCoord size, ConsoleCoord coord){
+	public void writeConsoleOutput(ConsoleCharInfo[] buffer, ConsoleCoord size, ConsoleCoord coord, ConsoleSmallRect writeRegion){
 		int[][] rawData = new int[buffer.length][2];
 		for(int i = 0; i < buffer.length; i++)
 		{
 			rawData[i][0] = (int)buffer[i].getCharacter();
 			rawData[i][1] = (int)buffer[i].getAttributes();
 		}
-		Josh.WRITECONSOLEOUTPUT(getHandle().getMemoryLocation(), rawData, size.getX(), size.getY(), coord.getX(), coord.getY());
+		Josh.WRITECONSOLEOUTPUT(getHandle().getMemoryLocation(), rawData, size.getX(), size.getY(), coord.getX(), coord.getY(), writeRegion.getLeft(), writeRegion.getTop(), writeRegion.getRight(), writeRegion.getBottom());
 	}
 	
 	/** 

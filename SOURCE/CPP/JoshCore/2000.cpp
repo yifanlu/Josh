@@ -106,7 +106,6 @@ JNIEXPORT jlong JNICALL Java_com_yifanlu_Josh_Josh_CREATECONSOLESCREENBUFFER
 	return pointer;
 }
 
-
 JNIEXPORT void JNICALL Java_com_yifanlu_Josh_Josh_FILLCONSOLEOUTPUTATTRIBUTE
   (JNIEnv *env, jclass jcls, jlong pointer, jint attribute, jint length, jint x, jint y)
 {
@@ -381,7 +380,7 @@ JNIEXPORT jstring JNICALL Java_com_yifanlu_Josh_Josh_READCONSOLE
 }
 
 JNIEXPORT jobjectArray JNICALL Java_com_yifanlu_Josh_Josh_READCONSOLEOUTPUT
-  (JNIEnv *env, jclass jcls, jlong pointer, jint sizeX, jint sizeY, jint coordX, jint coordY)
+  (JNIEnv *env, jclass jcls, jlong pointer, jint sizeX, jint sizeY, jint coordX, jint coordY, jint readLeft, jint readTop, jint readRight, jint readBottom)
 {
     HANDLE hConsole = pointerToHandle(pointer);
     CHAR_INFO *chiBuffer = new CHAR_INFO[sizeX * sizeY];
@@ -389,10 +388,10 @@ JNIEXPORT jobjectArray JNICALL Java_com_yifanlu_Josh_Josh_READCONSOLEOUTPUT
     COORD coordBufCoord;
 	SMALL_RECT srctReadRect;
 
-    srctReadRect.Top = coordX;
-    srctReadRect.Left = coordY; 
-    srctReadRect.Bottom = sizeY - 1;
-    srctReadRect.Right = sizeX - 1;
+    srctReadRect.Top = readTop;
+    srctReadRect.Left = readLeft; 
+    srctReadRect.Bottom = readBottom;
+    srctReadRect.Right = readRight;
     coordBufSize.Y = sizeY;
     coordBufSize.X = sizeX;
     coordBufCoord.X = coordX;
@@ -609,7 +608,7 @@ JNIEXPORT void JNICALL Java_com_yifanlu_Josh_Josh_WRITECONSOLEINPUT
 }
 
 JNIEXPORT void JNICALL Java_com_yifanlu_Josh_Josh_WRITECONSOLEOUTPUT
-  (JNIEnv *env, jclass jcls, jlong pointer, jobjectArray data, jint sizeX, jint sizeY, jint coordX, jint coordY)
+  (JNIEnv *env, jclass jcls, jlong pointer, jobjectArray data, jint sizeX, jint sizeY, jint coordX, jint coordY, jint writeLeft, jint writeTop, jint writeRight, jint writeBottom)
 {
     HANDLE hConsole = pointerToHandle(pointer);
     CHAR_INFO *chiBuffer = new CHAR_INFO[sizeX * sizeY];
@@ -617,10 +616,10 @@ JNIEXPORT void JNICALL Java_com_yifanlu_Josh_Josh_WRITECONSOLEOUTPUT
     COORD coordBufCoord;
 	SMALL_RECT srctWriteRect;
 
-    srctWriteRect.Top = coordX; // Row start : ex 1
-    srctWriteRect.Left = coordY; // Column start : ex 1
-    srctWriteRect.Right = coordX + sizeX; // Column end : 9
-    srctWriteRect.Bottom = coordY + sizeY; // Row end : 2
+    srctWriteRect.Top = writeTop; // Row start : ex 1
+    srctWriteRect.Left = writeLeft; // Column start : ex 1
+    srctWriteRect.Right = writeRight; // Column end : 9
+    srctWriteRect.Bottom = writeBottom; // Row end : 2
     coordBufSize.X = sizeX; // Size 9 columns
     coordBufSize.Y = sizeY; // Size 2 rows
     coordBufCoord.X = 0; // Dest. row 1
