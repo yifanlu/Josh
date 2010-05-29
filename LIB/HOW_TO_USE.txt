@@ -1,1 +1,0 @@
-The default JoshCore.dll is compiled for Windows XP and higher only.
