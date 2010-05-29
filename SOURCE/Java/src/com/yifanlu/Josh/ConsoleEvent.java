@@ -11,28 +11,27 @@ package com.yifanlu.Josh;
  *
  * @see JoshInBuffer
  * @author Yifan Lu
- * @version 1.0, 04/24/10
+ * @version 1.3, 05/29/10
  * @since 0.1
  */
 public abstract class ConsoleEvent {
-	protected int eventType;
-	
-	/**
+
+    protected int eventType;
+    /**
      * Different type of event.
      */
-	public static final int FOCUS_EVENT = 0x0010, KEY_EVENT = 0x0001, MENU_EVENT = 0x0008, MOUSE_EVENT = 0x0002, WINDOW_BUFFER_SIZE_EVENT = 0x0004;
-	
-	/**
+    public static final int FOCUS_EVENT = 0x0010, KEY_EVENT = 0x0001, MENU_EVENT = 0x0008, MOUSE_EVENT = 0x0002, WINDOW_BUFFER_SIZE_EVENT = 0x0004;
+    /**
      * Constant value for key held.
      */
-	public static final int CAPSLOCK_ON = 0x0080, ENHANCED_KEY = 0x0100, LEFT_ALT_PRESSED = 0x0002, LEFT_CTRL_PRESSED = 0x0008, NUMLOCK_ON = 0x0020, RIGHT_ALT_PRESSED = 0x0001, RIGHT_CTRL_PRESSED = 0x0004, SCROLLLOCK_ON = 0x0040, SHIFT_PRESSED = 0x0010;
-	
-	/**
+    public static final int CAPSLOCK_ON = 0x0080, ENHANCED_KEY = 0x0100, LEFT_ALT_PRESSED = 0x0002, LEFT_CTRL_PRESSED = 0x0008, NUMLOCK_ON = 0x0020, RIGHT_ALT_PRESSED = 0x0001, RIGHT_CTRL_PRESSED = 0x0004, SCROLLLOCK_ON = 0x0040, SHIFT_PRESSED = 0x0010;
+
+    /**
      * Gets the event type.
-	 * 
-	 * @return An hex value of the event, test it with the event constants (ConsoleEvent.KEY_EVENT).
+     *
+     * @return An hex value of the event, test it with the event constants (ConsoleEvent.KEY_EVENT).
      */
-	public int getEventType(){
-		return this.eventType;
-	}
+    public int getEventType() {
+        return this.eventType;
+    }
 }

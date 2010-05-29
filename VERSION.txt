@@ -1,5 +1,5 @@
 Josh
-Version 1.2
+Version 1.3
 =======================================================================
 Copyright (C) 2010  Yifan Lu
 This program is free software: you can redistribute it and/or modify
@@ -9,6 +9,11 @@ the Free Software Foundation, either version 3 of the License, or
 =======================================================================
 
 Changelog:
+
+1.3
+-Cleaned up code
+-Converted to a NetBeans project
+-Added a library loader, no longer need to have both DLL and the JAR
 
 1.2
 -Fixed writeConsoleOutput bug

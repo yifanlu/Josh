@@ -11,35 +11,27 @@ This package:
 
 -/JAR
 Here is the JAR file you link with your application.
--/CLASS
-The class files for advanced linking.
 -/DOCS
 The JavaDocs for Josh.
 -/LIB
-Contains the required lib for using Josh. This file must be in the same folder
-as the .class file for your application.
+For advanced users, we recommend hosting the LIB separate from the JAR file, more info below.
 -/SOURCE/CPP
 The JNI CPP source
 -/SOURCE/Java
-The Java sources
--/SOURCE/Examples
-Contains some examples for you to see. You must link Josh to it and move the dll for it to work.
+The Java sources in a NetBeans project. Includes examples under test.
 
-How to Compile:
+How to Compile the Native Library:
 If you prefer to compile everything yourself, there's some steps you need to take:
 For the CPP DLL file: Open build.bat in /SOURCE/CPP and specify the folder 
 locations.
-For the Java files: Compile like any other Java file.
-For JavaDocs: Use javadoc_generate.bat and specify some paths to generate 
-the JavaDocs.
 
-How to Use:
-
-1. Link Josh.jar with your application.
-2. Choose a JoshCore.dll. The default will only work on Windows XP or 
-higher. For more compatibility, use the Windows 2000 version, for more 
-features, use the Windows Vista version.
-3. Look at the examples and read the JavaDocs if you need any help.
+To use, just link Josh.jar with your application. Advanced users may want to 
+include JoshCore.dll separately (for more flexibility and speed), what you need 
+to do is get the correct version from the LIB folder. There are three versions: 
+JoshCore_2000.dll supports all Windows versions, but does not have all the features, 
+JoshCore_XP.dll supports Windows XP and beyond, and JoshCore_Vista.dll supports Windows 
+Vista and beyond. Rename one of your choice, include it with your application, and 
+add the path to it to your "java.library.path" property, and Josh will find it.
 
 =======================================================================
 Copyright (C) 2010 Yifan Lu

@@ -15,50 +15,58 @@
 #include "com_yifanlu_Josh_Josh.h"
 
 void ThrowOSNotSupportedException
-  (JNIEnv *env, const char *requiredVersion)
+  (JNIEnv *env, int version)
 {
+	char message[100];
+	strcpy(message, "Sorry, this method requires an OS version of ");
+	switch(version)
+	{
+		case 0x0501: strcat(message, "Windows XP"); break;
+		case 0x0600: strcat(message, "Windows Vista"); break;
+	}
+	strcat(message, " or higher.");
 	env->ExceptionDescribe();
 	env->ExceptionClear();
 	jclass newExcCls = env->FindClass("com/yifanlu/Josh/OSNotSupportedException");
-	env->ThrowNew(newExcCls, requiredVersion);
+	env->ThrowNew(newExcCls, message);
 }
 
 #if TARGETVER < 0x0501 // Make undefined XP functions throw exception
 JNIEXPORT jint JNICALL Java_com_yifanlu_Josh_Josh_GETCONSOLEDISPLAYMODE
-  (JNIEnv *env, jclass jcls){ ThrowOSNotSupportedException(env, "Windows XP"); return 0; }
+  (JNIEnv *env, jclass jcls){ ThrowOSNotSupportedException(env, 0x0501); return 0; }
 
 JNIEXPORT jintArray JNICALL Java_com_yifanlu_Josh_Josh_GETCONSOLEFONTSIZE
-  (JNIEnv *env, jclass jcls, jlong pointer){ ThrowOSNotSupportedException(env, "Windows XP"); return (jintArray)env->NewGlobalRef(NULL); }
+  (JNIEnv *env, jclass jcls, jlong pointer){ ThrowOSNotSupportedException(env, 0x0501); return (jintArray)env->NewGlobalRef(NULL); }
 
 JNIEXPORT jintArray JNICALL Java_com_yifanlu_Josh_Josh_GETCONSOLESELECTIONINFO
-  (JNIEnv *env, jclass jcls){ ThrowOSNotSupportedException(env, "Windows XP"); return (jintArray)env->NewGlobalRef(NULL); }
+  (JNIEnv *env, jclass jcls){ ThrowOSNotSupportedException(env, 0x0501); return (jintArray)env->NewGlobalRef(NULL); }
 
 JNIEXPORT jintArray JNICALL Java_com_yifanlu_Josh_Josh_GETCURRENTCONSOLEFONT
-  (JNIEnv *env, jclass jcls, jlong pointer, jboolean maximum){ ThrowOSNotSupportedException(env, "Windows XP"); return (jintArray)env->NewGlobalRef(NULL); }
+  (JNIEnv *env, jclass jcls, jlong pointer, jboolean maximum){ ThrowOSNotSupportedException(env, 0x0501); return (jintArray)env->NewGlobalRef(NULL); }
 
 JNIEXPORT void JNICALL Java_com_yifanlu_Josh_Josh_SETCONSOLEFONT
-  (JNIEnv *env, jclass jcls, jlong pointer, jint font){ ThrowOSNotSupportedException(env, "Windows XP"); }
+  (JNIEnv *env, jclass jcls, jlong pointer, jint font){ ThrowOSNotSupportedException(env, 0x0501); }
 
 JNIEXPORT void JNICALL Java_com_yifanlu_Josh_Josh_SETCONSOLEDISPLAYMODE
-  (JNIEnv *env, jclass jcls, jlong pointer, jint mode){ ThrowOSNotSupportedException(env, "Windows XP"); }
+  (JNIEnv *env, jclass jcls, jlong pointer, jint mode){ ThrowOSNotSupportedException(env, 0x0501); }
 #endif
 
 #if TARGETVER < 0x0600 // Make undefined Vista functions throw exception
 JNIEXPORT jintArray JNICALL Java_com_yifanlu_Josh_Josh_GETCONSOLEHISTORYINFO
-  (JNIEnv *env, jclass jcls){ ThrowOSNotSupportedException(env, "Windows Vista"); return (jintArray)env->NewGlobalRef(NULL); }
+  (JNIEnv *env, jclass jcls){ ThrowOSNotSupportedException(env, 0x0600); return (jintArray)env->NewGlobalRef(NULL); }
 
 JNIEXPORT void JNICALL Java_com_yifanlu_Josh_Josh_SETCONSOLEHISTORYINFO
-  (JNIEnv *env, jclass jcls, jint bufferSize, jint numberOfBuffers, jint flags){ ThrowOSNotSupportedException(env, "Windows Vista"); }
+  (JNIEnv *env, jclass jcls, jint bufferSize, jint numberOfBuffers, jint flags){ ThrowOSNotSupportedException(env, 0x0600); }
 
 JNIEXPORT void JNICALL Java_com_yifanlu_Josh_Josh_SETCONSOLESCREENBUFFERINFOEX
   (JNIEnv *env, jclass jcls, jlong pointer, jint sizeX, jint sizeY, jint cursorX, jint cursorY, jint attributes, jint windowLeft, jint windowTop, jint windowRight, jint windowBottom, jint maxX, jint maxY)
-{ ThrowOSNotSupportedException(env, "Windows Vista"); }
+{ ThrowOSNotSupportedException(env, 0x0600); }
 
 JNIEXPORT void JNICALL Java_com_yifanlu_Josh_Josh_SETCURRENTCONSOLEFONTEX
-  (JNIEnv *env, jclass jcls, jlong pointer, jboolean maximum, jint font, jint sizeX, jint sizeY){ ThrowOSNotSupportedException(env, "Windows Vista"); }
+  (JNIEnv *env, jclass jcls, jlong pointer, jboolean maximum, jint font, jint sizeX, jint sizeY){ ThrowOSNotSupportedException(env, 0x0600); }
 
 JNIEXPORT jstring JNICALL Java_com_yifanlu_Josh_Josh_GETCONSOLEORGINIALTITLE
-  (JNIEnv *env, jclass jcls){ ThrowOSNotSupportedException(env, "Windows Vista"); return (jstring)env->NewGlobalRef(NULL); }
+  (JNIEnv *env, jclass jcls){ ThrowOSNotSupportedException(env, 0x0600); return (jstring)env->NewGlobalRef(NULL); }
 #endif
 
 BOOL APIENTRY DllMain( HMODULE hModule,

@@ -1,10 +1,5 @@
 package com.yifanlu.Josh;
 
-import com.yifanlu.Josh.Josh;
-import com.yifanlu.Josh.JoshOutput;
-import com.yifanlu.Josh.JoshOutBuffer;
-import com.yifanlu.Josh.ConsoleHandle;
-
 /**
  * Represents a new screen buffer.
  * In a single console application, you can have as many buffers as the memory can handle 
@@ -15,56 +10,58 @@ import com.yifanlu.Josh.ConsoleHandle;
  * by the static class {@link Josh}.<br />
  *
  * @author Yifan Lu
- * @version 1.0, 04/24/10
+ * @version 1.3, 05/29/10
  * @since 0.1
  */
 public class ConsoleBuffer extends Josh {
-	/**
+
+    /**
      * Contains output functions.
      */
-	public JoshOutput out;
-	
-	/**
+    public JoshOutput out;
+    /**
      * Provides native access to the output buffer in this screen buffer.
      */
-	public JoshOutBuffer outBuffer;
-	
-	/**
+    public JoshOutBuffer outBuffer;
+
+    /**
      * Provides simplified access to the output buffer in this screen buffer.
      */
-	public ConsoleBuffer(){ this.newConsoleBuffer(true,true); }
-	
-	/**
+    public ConsoleBuffer() {
+        this.newConsoleBuffer(true, true);
+    }
+
+    /**
      * Creates a new console buffer.
      *
      * @param read Does the user have read access to this buffer?
      * @param write Does the user have write access to this buffer?
      */
-	public ConsoleBuffer(boolean read, boolean write){ this.newConsoleBuffer(read,write); }
-	
-	private void newConsoleBuffer(boolean read, boolean write) {
-		long pointer = super.CREATECONSOLESCREENBUFFER(read,write,0);
-		this.setHandle(new ConsoleHandle(pointer));
-		this.out = new JoshOutput(this.getHandle());
-		this.outBuffer = new JoshOutBuffer(this.getHandle());
-	}
-	
-	/** 
-	 * Gets the {@link JoshOutput} for output functions.
-	 * 
-	 * @return A {@link JoshOutput}.
-	public JoshOutput getOut() {
-		return this.out;
-	 }
-	 */
-	
-	/** 
-	 * Gets the {@link JoshOutBuffer} for working directly with the output buffer.
-	 *
-	 * @return A {@link JoshOutBuffer}.
-	 * @see JoshOutBuffer
-	public JoshOutBuffer getOutBuffer() {
-		return this.outBuffer;
-	 }
-	 */
+    public ConsoleBuffer(boolean read, boolean write) {
+        this.newConsoleBuffer(read, write);
+    }
+
+    private void newConsoleBuffer(boolean read, boolean write) {
+        long pointer = Josh.CREATECONSOLESCREENBUFFER(read, write, 0);
+        this.setHandle(new ConsoleHandle(pointer));
+        this.out = new JoshOutput(this.getHandle());
+        this.outBuffer = new JoshOutBuffer(this.getHandle());
+    }
+    /**
+     * Gets the {@link JoshOutput} for output functions.
+     *
+     * @return A {@link JoshOutput}.
+    public JoshOutput getOut() {
+    return this.out;
+    }
+     */
+    /**
+     * Gets the {@link JoshOutBuffer} for working directly with the output buffer.
+     *
+     * @return A {@link JoshOutBuffer}.
+     * @see JoshOutBuffer
+    public JoshOutBuffer getOutBuffer() {
+    return this.outBuffer;
+    }
+     */
 }
